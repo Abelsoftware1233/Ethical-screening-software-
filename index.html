@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pentest Suite Pro - Advanced Security Testing Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="glass-nav">
+            <div class="logo">
+                <i class="fas fa-shield-haltered"></i>
+                <span>Pentest<span class="gradient">Suite</span></span>
+            </div>
+            <div class="nav-stats">
+                <div class="stat-item">
+                    <i class="fas fa-charging-station"></i>
+                    <span id="scanCount">10</span>
+                    <small>scans left</small>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-history"></i>
+                    <span id="resetTimer">24h</span>
+                    <small>reset in</small>
+                </div>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <div class="tabs-modern">
+                <button class="tab-btn" data-tab="fuzzer">
+                    <i class="fas fa-bug"></i>
+                    <span>URL Fuzzer</span>
+                </button>
+                <button class="tab-btn" data-tab="api">
+                    <i class="fas fa-plug"></i>
+                    <span>API Scanner</span>
+                </button>
+                <button class="tab-btn" data-tab="people">
+                    <i class="fas fa-user-secret"></i>
+                    <span>People Hunter</span>
+                </button>
+            </div>
+
+            <!-- URL Fuzzer Tab -->
+            <div id="fuzzerTab" class="tab-pane active">
+                <div class="tool-header">
+                    <h2><i class="fas fa-search"></i> URL Fuzzer</h2>
+                    <p>Discover hidden directories, files, and endpoints</p>
+                </div>
+
+                <div class="config-panel">
+                    <div class="mode-selector">
+                        <label>Scan Intensity</label>
+                        <div class="mode-buttons">
+                            <button class="mode-btn" data-mode="gentle">
+                                <i class="fas fa-seedling"></i> Gentle
+                                <small>100 paths</small>
+                            </button>
+                            <button class="mode-btn active" data-mode="normal">
+                                <i class="fas fa-chart-line"></i> Normal
+                                <small>500 paths</small>
+                            </button>
+                            <button class="mode-btn" data-mode="aggressive">
+                                <i class="fas fa-fire"></i> Aggressive
+                                <small>2000 paths</small>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label><i class="fas fa-globe"></i> Target URL</label>
+                        <div class="url-input">
+                            <select id="fuzzerProtocol">
+                                <option value="https">HTTPS</option>
+                                <option value="http">HTTP</option>
+                            </select>
+                            <input type="text" id="fuzzerTarget" placeholder="example.com" value="example.com">
+                        </div>
+                    </div>
+
+                    <div class="advanced-options">
+                        <details>
+                            <summary><i class="fas fa-sliders-h"></i> Advanced Options</summary>
+                            <div class="advanced-content">
+                                <label><input type="checkbox" id="followRedirects" checked> Follow redirects</label>
+                                <label><input type="checkbox" id="detectTech"> Detect technologies</label>
+                                <label><input type="checkbox" id="saveResults"> Save results to file</label>
+                                <div class="thread-count">
+                                    <label>Threads: <input type="number" id="threadCount" value="10" min="1" max="50"></label>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+
+                    <div class="terms-check">
+                        <label>
+                            <input type="checkbox" id="fuzzerAgree">
+                            <i class="fas fa-gavel"></i> I am authorized to scan this target
+                        </label>
+                    </div>
+
+                    <button class="btn-primary" id="startFuzzerBtn">
+                        <i class="fas fa-play"></i> Start Fuzzing
+                    </button>
+                </div>
+
+                <div id="fuzzerProgress" class="progress-container hidden">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span id="fuzzerCurrent">0</span> / <span id="fuzzerTotal">0</span>
+                        <span id="fuzzerFound" class="found-count">Found: 0</span>
+                    </div>
+                </div>
+
+                <div id="fuzzerResults" class="results-card hidden">
+                    <div class="results-header">
+                        <h3><i class="fas fa-chart-bar"></i> Scan Results</h3>
+                        <button class="btn-icon" id="exportFuzzerResults"><i class="fas fa-download"></i></button>
+                    </div>
+                    <div id="fuzzerOutput" class="results-content"></div>
+                </div>
+            </div>
+
+            <!-- API Scanner Tab -->
+            <div id="apiTab" class="tab-pane">
+                <div class="tool-header">
+                    <h2><i class="fas fa-shield-virus"></i> API Vulnerability Scanner</h2>
+                    <p>Comprehensive API security testing (OWASP Top 10 API)</p>
+                </div>
+
+                <div class="config-panel">
+                    <div class="mode-selector">
+                        <label>Scan Depth</label>
+                        <div class="mode-buttons">
+                            <button class="mode-btn" data-api-mode="basic">
+                                <i class="fas fa-flag-checkered"></i> Basic
+                            </button>
+                            <button class="mode-btn active" data-api-mode="standard">
+                                <i class="fas fa-chart-simple"></i> Standard
+                            </button>
+                            <button class="mode-btn" data-api-mode="exhaustive">
+                                <i class="fas fa-microscope"></i> Exhaustive
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label><i class="fas fa-link"></i> API Base URL</label>
+                        <div class="url-input">
+                            <select id="apiProtocol">
+                                <option value="https">HTTPS</option>
+                                <option value="http">HTTP</option>
+                            </select>
+                            <input type="text" id="apiTarget" placeholder="api.example.com/v1" value="api.example.com">
+                        </div>
+                    </div>
+
+                    <div class="api-spec">
+                        <label>API Specification (optional)</label>
+                        <div class="spec-options">
+                            <button class="spec-btn" data-spec="openapi">OpenAPI URL</button>
+                            <button class="spec-btn" data-spec="upload">Upload File</button>
+                            <button class="spec-btn" data-spec="postman">Postman Collection</button>
+                        </div>
+                        <div id="specInput" class="spec-input hidden">
+                            <input type="text" id="openApiUrl" placeholder="https://example.com/openapi.json">
+                            <input type="file" id="apiFile" class="hidden" accept=".json,.yaml,.yml">
+                        </div>
+                    </div>
+
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" id="authTest" checked> Test authentication</label>
+                        <label><input type="checkbox" id="rateLimitTest" checked> Rate limit testing</label>
+                        <label><input type="checkbox" id="idorTest" checked> IDOR detection</label>
+                    </div>
+
+                    <button class="btn-primary" id="startApiBtn">
+                        <i class="fas fa-radar"></i> Scan API
+                    </button>
+                </div>
+
+                <div id="apiProgress" class="progress-container hidden">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div id="apiStatus" class="progress-status">Initializing...</div>
+                </div>
+
+                <div id="apiResults" class="results-card hidden">
+                    <div class="results-header">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Vulnerability Report</h3>
+                        <button class="btn-icon" id="exportApiResults"><i class="fas fa-download"></i></button>
+                    </div>
+                    <div id="apiOutput" class="results-content"></div>
+                </div>
+            </div>
+
+            <!-- People Hunter Tab -->
+            <div id="peopleTab" class="tab-pane">
+                <div class="tool-header">
+                    <h2><i class="fas fa-users"></i> People Hunter - OSINT Platform</h2>
+                    <p>Intelligent employee and email discovery engine</p>
+                </div>
+
+                <div class="config-panel">
+                    <div class="input-group">
+                        <label><i class="fas fa-building"></i> Company Domain</label>
+                        <input type="text" id="companyDomain" placeholder="company.com" value="">
+                    </div>
+
+                    <div class="osint-sources">
+                        <label>OSINT Sources</label>
+                        <div class="source-grid">
+                            <label><input type="checkbox" value="linkedin" checked> LinkedIn</label>
+                            <label><input type="checkbox" value="github" checked> GitHub</label>
+                            <label><input type="checkbox" value="twitter" checked> Twitter/X</label>
+                            <label><input type="checkbox" value="emailformat" checked> Email patterns</label>
+                            <label><input type="checkbox" value="hunter" checked> Email discovery</label>
+                            <label><input type="checkbox" value="whois" checked> WHOIS data</label>
+                        </div>
+                    </div>
+
+                    <div class="advanced-options">
+                        <details>
+                            <summary><i class="fas fa-cogs"></i> Advanced OSINT</summary>
+                            <div class="advanced-content">
+                                <label><input type="checkbox" id="deepSearch"> Deep web search</label>
+                                <label><input type="checkbox" id="breachCheck"> Check breach databases</label>
+                                <label><input type="checkbox" id="socialGraph"> Build social graph</label>
+                            </div>
+                        </details>
+                    </div>
+
+                    <button class="btn-primary" id="startPeopleBtn">
+                        <i class="fas fa-user-ninja"></i> Hunt People
+                    </button>
+                </div>
+
+                <div id="peopleProgress" class="progress-container hidden">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <div id="peopleStatus" class="progress-status">Gathering intelligence...</div>
+                </div>
+
+                <div id="peopleResults" class="results-card hidden">
+                    <div class="results-header">
+                        <h3><i class="fas fa-address-card"></i> Intelligence Report</h3>
+                        <button class="btn-icon" id="exportPeopleResults"><i class="fas fa-download"></i></button>
+                    </div>
+                    <div id="peopleOutput" class="results-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="script.js"></script>
+</body>
+</html>
