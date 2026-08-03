@@ -5,7 +5,7 @@ let scanState = {
     people: { running: false }
 };
 
-let dailyScans = 10;
+let dailyScans = 30;
 let lastReset = localStorage.getItem('lastResetDate');
 
 // Initialize
@@ -258,7 +258,7 @@ async function startApiScan() {
         const url = `${baseUrl}${endpoints[i]}`;
         
         try {
-            const response = await fetchWithTimeout(url, { timeout: 5000 });
+            const response = await fetchWithTimeout(url, { timeout: 5003 });
             
             if (response.status === 200) {
                 vulnerabilities.push({
