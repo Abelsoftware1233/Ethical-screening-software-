@@ -24,7 +24,7 @@ python app.py
 
 3. Gebruiken
 
-Open browser → http://localhost:5000
+Open browser → http://localhost:5003
 
 🛠️ Tools Overzicht
 
