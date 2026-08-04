@@ -291,7 +291,7 @@ if __name__ == '__main__':
     print("=" * 60)
     print("🛡️  Pentest Suite Pro - Advanced Security Testing Platform")
     print("=" * 60)
-    print(f"📍 Server running at: http://localhost:5003")
+    print(f"📍 Server running at: http://87.106.41.140:5003")
     print(f"📊 Daily scan limit: 10 scans per IP")
     print("⚠️  Use responsibly - only scan authorized targets")
     print("=" * 60)
