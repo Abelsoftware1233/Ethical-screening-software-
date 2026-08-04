@@ -292,7 +292,7 @@ if __name__ == '__main__':
     print("🛡️  Pentest Suite Pro - Advanced Security Testing Platform")
     print("=" * 60)
     print(f"📍 Server running at: http://87.106.41.140:5003")
-    print(f"📊 Daily scan limit: 10 scans per IP")
+    print(f"📊 Daily scan limit: 50 scans per IP")
     print("⚠️  Use responsibly - only scan authorized targets")
     print("=" * 60)
     app.run(debug=False, host='0.0.0.0', port=5003, threaded=True)
