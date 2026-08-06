@@ -24,7 +24,7 @@ function initializeDailyScans() {
         localStorage.setItem('dailyScans', dailyScans);
         localStorage.setItem('lastResetDate', today);
     } else {
-        dailyScans = parseInt(localStorage.getItem('dailyScans')) || 10;
+        dailyScans = parseInt(localStorage.getItem('dailyScans')) || 50;
     }
     updateScanDisplay();
 }
