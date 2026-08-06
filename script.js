@@ -52,7 +52,7 @@ function startResetTimer() {
         tomorrow.setHours(0, 0, 0, 0);
         const hoursLeft = Math.ceil((tomorrow - now) / 60000);
         document.getElementById('resetTimer').textContent = `${hoursLeft}h`;
-    }, 3600000);
+    }, 60000);
 }
 
 function setupEventListeners() {
