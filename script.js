@@ -36,7 +36,7 @@ function updateScanDisplay() {
 
 function useScan() {
     if (dailyScans <= 0) {
-        showToast('No scans remaining today. Scans reset every 24 hours.', 'error');
+        showToast('No scans remaining today. Scans reset every 01 hours.', 'error');
         return false;
     }
     dailyScans--;
