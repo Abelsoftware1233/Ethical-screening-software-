@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initializeDailyScans() {
     const today = new Date().toDateString();
     if (lastReset !== today) {
-        dailyScans = 10;
+        dailyScans = 50;
         localStorage.setItem('dailyScans', dailyScans);
         localStorage.setItem('lastResetDate', today);
     } else {
