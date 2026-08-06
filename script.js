@@ -258,7 +258,7 @@ async function startApiScan() {
         const url = `${baseUrl}${endpoints[i]}`;
         
         try {
-            const response = await fetchWithTimeout(url, { timeout: 5003 });
+            const response = await fetchWithTimeout(url, { timeout: 10000 });
             
             if (response.status === 200) {
                 vulnerabilities.push({
