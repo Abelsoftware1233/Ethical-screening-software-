@@ -167,7 +167,7 @@ async function startFuzzer() {
         try {
             const response = await fetchWithTimeout(url, {
                 method: 'GET',
-                timeout: 5000
+                timeout: 20000
             });
             
             if (response.status !== 404) {
