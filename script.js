@@ -5,7 +5,7 @@ let scanState = {
     people: { running: false }
 };
 
-let dailyScans = 30;
+let dailyScans = 50;
 let lastReset = localStorage.getItem('lastResetDate');
 
 // Initialize
