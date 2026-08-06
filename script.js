@@ -673,7 +673,7 @@ function showToast(message, type = 'info') {
     
     setTimeout(() => {
         toast.classList.add('hidden');
-    }, 3000);
+    }, 20000);
 }
 
 function escapeHtml(text) {
