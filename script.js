@@ -50,7 +50,7 @@ function startResetTimer() {
         const tomorrow = new Date(now);
         tomorrow.setDate(tomorrow.getDate() + 1);
         tomorrow.setHours(0, 0, 0, 0);
-        const hoursLeft = Math.ceil((tomorrow - now) / 3600000);
+        const hoursLeft = Math.ceil((tomorrow - now) / 60000);
         document.getElementById('resetTimer').textContent = `${hoursLeft}h`;
     }, 3600000);
 }
@@ -280,7 +280,7 @@ async function startApiScan() {
         
         for (const test of idorTests) {
             try {
-                const response = await fetchWithTimeout(`${baseUrl}${test}`, { timeout: 5000 });
+                const response = await fetchWithTimeout(`${baseUrl}${test}`, { timeout: 20000 });
                 if (response.status === 200) {
                     vulnerabilities.push({
                         type: 'Potential IDOR',
